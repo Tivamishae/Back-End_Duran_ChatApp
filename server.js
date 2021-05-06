@@ -1,12 +1,10 @@
 const express = require("express");
-const { createProxyMiddleware } = require('http-proxy-middleware');
 const http = require("http");
 const app = express();
 const server = http.createServer(app);
 const socket = require("socket.io");
 const io = socket(server);
 
-io.use('/api', createProxyMiddleware({ target: 'https://duran-chatapp-backend.herokuapp.com/', changeOrigin: true }));
 
 io.on("connection", socket => {
     const x = socket.id;
@@ -70,4 +68,4 @@ io.on("connection", socket => {
 
 });
 
-server.listen(process.env.PORT || 8000, () => console.log("Server is running."));
+server.listen(process.env.PORT || 8000, () => console.log("Server is running"));
