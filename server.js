@@ -1,11 +1,8 @@
-const express = require("express");
-const http = require("http");
-const app = express();
-const server = http.createServer(app);
-const socket = require("socket.io")(http, {
-    path: '/socket',
+var app = require('express')();
+var http = require('http').createServer(app);
+var io = require('socket.io')(http, {
+  path: '/socket',
 });
-const io = socket(server);
 
 
 io.on("connection", socket => {
